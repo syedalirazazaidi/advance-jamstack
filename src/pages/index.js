@@ -2,10 +2,50 @@ import React, { useState, useRef } from "react"
 import Lolli from "../components/lolli"
 import "./style.css"
 
+import { useQuery, useMutation } from "@apollo/client"
+import gql from "graphql-tag"
+
+const VOLLY_QUERY = gql`
+  {
+    getVCard {
+      id
+    }
+  }
+`
+const AddVCARDMutation = gql`
+  mutation addVCard(
+    $c1: String!
+    $c2: String!
+    $c3: String!
+    $recField: String!
+    $senderField: String!
+    $messageField: String!
+  ) {
+    addVCard(
+      c1: $c1
+      c2: $c2
+      c3: $c3
+      recField: $recField
+      senderField: $senderField
+      messageField: $messageField
+    ) {
+      c1
+      c2
+      c3
+      recField
+      senderField
+      messageField
+    }
+  }
+`
+
 export default function Home() {
   const [c1, setC1] = useState("#deaa43")
   const [c2, setC2] = useState("#e95946")
   const [c3, setC3] = useState("#d52358")
+
+  const [addVCard] = useMutation(AddVCARDMutation)
+
   const senderField = useRef()
   const recField = useRef()
   const messageField = useRef()
@@ -13,7 +53,42 @@ export default function Home() {
     console.log(senderField.current.value, "SENDER")
     console.log(recField.current.value, "REVEIVER")
     console.log(messageField.current.value, "MESSAGE")
+    console.log(c1, "LOLOL")
+    addVCard({
+      variables: {
+        c1,
+        c2,
+        c3,
+        recField: recField.current.value,
+        senderField: senderField.current.value,
+        messageField: messageField.current.value,
+        // url: input.value,
+        // description: desc.value,
+      },
+      // refetchQueries: [{ query: BOOKMARK_QUERY }],
+    })
   }
+  // const { loading, error, data } = useQuery(VOLLY_QUERY)
+  // if (loading)
+  //   return (
+  //     <h2
+  //       style={{
+  //         marginTop: "60px",
+  //         justifyContent: "center",
+  //         alignItems: "center",
+  //         display: "flex",
+  //       }}
+  //     >
+  //       Loading...
+  //     </h2>
+  //   )
+
+  // if (error) {
+  //   console.log(error, "ELOLO")
+  //   return <h2>Error</h2>
+  // }
+  // if (data) console.log(data, "DATA")
+
   return (
     <>
       <h1 className="header">virtual lollipop</h1>

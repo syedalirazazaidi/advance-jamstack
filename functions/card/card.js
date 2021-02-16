@@ -1,5 +1,5 @@
 const { ApolloServer, gql } = require("apollo-server-lambda")
-
+const shortid = require("shortid")
 var dotenv = require("dotenv")
 dotenv.config()
 const faunadb = require("faunadb"),
@@ -8,6 +8,7 @@ const faunadb = require("faunadb"),
 const typeDefs = gql`
   type Query {
     getVCard: [VCard!]
+    getLolliLink(link: String): VCard
   }
   type VCard {
     id: ID!
@@ -33,10 +34,43 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    getVCard: (root, args, context) => {
-      return []
+    getVCard: async (parent, args, context, { link }) => {
+      try {
+        // access faunadb
+        const client = new faunadb.Client({
+          secret: process.env.FAUNA_SERVER_SECRET,
+        })
+        const result = await client.query(
+          q.Map(
+            q.Paginate(q.Match(q.Index("link"))),
+            q.Lambda(x => q.Get(x))
+          )
+        )
+        return result.data.map(data => {
+          console.log(data, "fasfsadsa")
+          return {
+            id: data.ref.id,
+            c1: data.data.c1,
+            c2: data.data.c2,
+            c3: data.data.c3,
+            recField: data.data.recField,
+            senderField: data.data.senderField,
+            messageField: data.data.messageField,
+            link: data.data.link,
+          }
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    getLolliLink: async (_, { link }) => {
+      const result = await client.query(
+        query.Get(query.Match(query.Index("link"), link))
+      )
+      return result.data
     },
   },
+
   Mutation: {
     addVCard: async (
       _,
@@ -56,18 +90,25 @@ const resolvers = {
               recField,
               senderField,
               messageField,
-
-              // url: url,
-              // description: description,
+              link: shortid.generate(),
             },
           })
         )
-        return result.ref.data
+
+        console.log(result.data.link, "lo((lli")
+        return {
+          id: result.ref.id,
+          c1: result.data.c1,
+          c2: result.data.c2,
+          c3: result.data.c3,
+          recField: result.data.recField,
+          senderField: result.data.senderField,
+          messageField: result.data.messageField,
+          link: result.data.link,
+        }
       } catch (error) {
         console.log(error)
       }
-      // console.log("))))))))))")
-      // console.log(c1, c2, c3, recField, senderField, messageField)
     },
   },
 }

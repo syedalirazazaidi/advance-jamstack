@@ -15,12 +15,14 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.7",
+    "cross-fetch": "^3.0.6",
+    "dotenv": "^8.2.0",
     "gatsby": "^2.26.1",
+    "gatsby-source-graphql": "^2.14.0",
     "graphql": "^15.4.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "cross-fetch": "^3.0.6",
-    "dotenv": "^8.2.0"
+    "shortid": "^2.2.16"
   },
   "devDependencies": {
     "prettier": "2.2.1"

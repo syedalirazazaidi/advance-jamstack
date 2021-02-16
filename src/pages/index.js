@@ -2,12 +2,14 @@ import React, { useState, useRef } from "react"
 import Lolli from "../components/lolli"
 import "./style.css"
 
+import { navigate } from "gatsby"
+
 import { useQuery, useMutation } from "@apollo/client"
 import gql from "graphql-tag"
 
 const VOLLY_QUERY = gql`
   {
-    getVCard {
+    getLolliLink {
       id
     }
   }
@@ -29,12 +31,7 @@ const AddVCARDMutation = gql`
       senderField: $senderField
       messageField: $messageField
     ) {
-      c1
-      c2
-      c3
-      recField
-      senderField
-      messageField
+      link
     }
   }
 `
@@ -50,10 +47,6 @@ export default function Home() {
   const recField = useRef()
   const messageField = useRef()
   const handleSubmit = () => {
-    console.log(senderField.current.value, "SENDER")
-    console.log(recField.current.value, "REVEIVER")
-    console.log(messageField.current.value, "MESSAGE")
-    console.log(c1, "LOLOL")
     addVCard({
       variables: {
         c1,
@@ -62,11 +55,15 @@ export default function Home() {
         recField: recField.current.value,
         senderField: senderField.current.value,
         messageField: messageField.current.value,
-        // url: input.value,
-        // description: desc.value,
       },
-      // refetchQueries: [{ query: BOOKMARK_QUERY }],
+    }).then(result => {
+      console.log(result.data.addVCard.link, "LOLO")
+      navigate(`/showlolli/${result.data.addVCard.link}`)
     })
+
+    recField.current.value = ""
+    senderField.current.value = ""
+    messageField.current.value = ""
   }
   // const { loading, error, data } = useQuery(VOLLY_QUERY)
   // if (loading)
@@ -87,7 +84,7 @@ export default function Home() {
   //   console.log(error, "ELOLO")
   //   return <h2>Error</h2>
   // }
-  // if (data) console.log(data, "DATA")
+  // if (data) console.log(data.link, "DATA")
 
   return (
     <>

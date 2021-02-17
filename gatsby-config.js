@@ -13,10 +13,11 @@ module.exports = {
       options: {
         // Arbitrary name for the remote schema Query type
         typeName: "GETVCARD",
-        // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
+        // Field under which the remote schema will be accessible. You'll use this in your
+        //  Gatsby query
         fieldName: "getVCard",
         // Url to query from
-        url: "https://getVCard.netlify.app/.netlify/functions/card",
+        url: "https://virtualpop.netlify.app/.netlify/functions/card",
       },
     },
   ],

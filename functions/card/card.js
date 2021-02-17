@@ -47,7 +47,6 @@ const resolvers = {
           )
         )
         return result.data.map(data => {
-          console.log(data, "fasfsadsa")
           return {
             id: data.ref.id,
             c1: data.data.c1,

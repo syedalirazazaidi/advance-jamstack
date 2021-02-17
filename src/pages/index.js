@@ -7,13 +7,13 @@ import { navigate } from "gatsby"
 import { useQuery, useMutation } from "@apollo/client"
 import gql from "graphql-tag"
 
-const VOLLY_QUERY = gql`
-  {
-    getLolliLink {
-      id
-    }
-  }
-`
+// const VOLLY_QUERY = gql`
+//   {
+//     getLolliLink {
+//       id
+//     }
+//   }
+// `
 const AddVCARDMutation = gql`
   mutation addVCard(
     $c1: String!
@@ -57,7 +57,7 @@ export default function Home() {
         messageField: messageField.current.value,
       },
     }).then(result => {
-      console.log(result.data.addVCard.link, "LOLO")
+      console.log(result.data.addVCard.link, "999LOLO")
       navigate(`/showlolli/${result.data.addVCard.link}`)
     })
 

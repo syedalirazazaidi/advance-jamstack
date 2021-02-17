@@ -38,3 +38,42 @@ padding:5px 10px
     height: 250px;
     
 }
+.containerLolly{
+    margin-top: 30px;
+    display: flex;
+   padding: 20px 40px;
+  
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+   
+}
+.Lolly{
+    padding: 1em 1em;
+    margin-bottom: 1.5em;
+    background-color: rgba(0,0,0,.2);
+    box-shadow: 0 0 10px rgb(0 0 0 / 60%);
+    text-align: left;
+    font-style: italic;
+    font-size: 1.1em;
+    
+}
+.from {
+    padding-left: 2em;
+}
+.mess{
+
+}
+.from .recip{
+    font-family: Yellowtail,cursive;
+    font-size: 1.6em;
+    font-style: normal;
+    text-shadow: #000 0 0 10px;
+}
+.preLink {
+    color: #fa73d9;
+    margin-top: .5em;
+    padding: .5em 1em;
+    border: 1px solid #000;
+    background-color: #000;
+}

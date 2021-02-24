@@ -7,13 +7,6 @@ import { navigate } from "gatsby"
 import { useQuery, useMutation } from "@apollo/client"
 import gql from "graphql-tag"
 
-// const VOLLY_QUERY = gql`
-//   {
-//     getLolliLink {
-//       id
-//     }
-//   }
-// `
 const AddVCARDMutation = gql`
   mutation addVCard(
     $c1: String!
@@ -42,6 +35,7 @@ export default function Home() {
   const [c3, setC3] = useState("#d52358")
 
   const [addVCard] = useMutation(AddVCARDMutation)
+  // const [getVCard] = useMutation(GET_BY_ID)
 
   const senderField = useRef()
   const recField = useRef()
@@ -65,7 +59,7 @@ export default function Home() {
     senderField.current.value = ""
     messageField.current.value = ""
   }
-  // const { loading, error, data } = useQuery(VOLLY_QUERY)
+  // const { loading, error, data } = useQuery(GET_BY_ID)
   // if (loading)
   //   return (
   //     <h2
@@ -80,11 +74,11 @@ export default function Home() {
   //     </h2>
   //   )
 
+  // if (data) console.log(data.link, "DAIIIIIIIIIIIIIIIITA")
   // if (error) {
   //   console.log(error, "ELOLO")
   //   return <h2>Error</h2>
   // }
-  // if (data) console.log(data.link, "DATA")
 
   return (
     <>

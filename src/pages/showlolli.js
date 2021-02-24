@@ -1,7 +1,7 @@
 import React from "react"
 import { useQuery, useMutation } from "@apollo/client"
 import gql from "graphql-tag"
-import Lolli from "../components/lolli"
+import NewLolli from "../components/newLolli"
 
 const VOLLY_QUERY = gql`
   {
@@ -16,7 +16,7 @@ const VOLLY_QUERY = gql`
     }
   }
 `
-
+// "gatsby-source-graphql": "^2.13.0",
 export default function Showlolli(props) {
   console.log(props, "PROPSS")
   const { loading, error, data } = useQuery(VOLLY_QUERY)
@@ -33,7 +33,8 @@ export default function Showlolli(props) {
     const bottom = data.c3
     return (
       <div key={key}>
-        <h1 style={{ fontFamily: "sans-serif" }}>virtual lollipop</h1>
+        <NewLolli vollidata={data} path={`/${data.link}`} />
+        {/* <h1 style={{ fontFamily: "sans-serif" }}>virtual lollipop</h1>
         <p>because we all know someone who deserves some sugar.</p>
         <div className="containerLolly">
           <div style={{ margin: "55px" }}>
@@ -48,8 +49,7 @@ export default function Showlolli(props) {
             <p className="mess">{data.messageField}</p>
             <p className="from">{data.recField}</p>
           </div>
-        </div>
-        {/* <Lolly key={key} pageContext={value} /> */}
+        </div> */}
       </div>
     )
   })

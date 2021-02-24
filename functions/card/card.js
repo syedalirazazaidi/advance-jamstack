@@ -94,7 +94,6 @@ const resolvers = {
           })
         )
 
-        console.log(result.data.link, "lo((lli")
         return {
           id: result.ref.id,
           c1: result.data.c1,

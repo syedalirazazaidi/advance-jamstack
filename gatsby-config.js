@@ -3,7 +3,12 @@
  *
  * See: https://www.gatsbyjs.com/docs/gatsby-config/
  */
+var baseUrl =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8888"
+    : "https://virtualpop.netlify.app"
 
+console.log(process.env.NODE_ENV, "____________________________")
 module.exports = {
   /* Your site config here */
   plugins: [
@@ -15,9 +20,10 @@ module.exports = {
         typeName: "GETVCARD",
         // Field under which the remote schema will be accessible. You'll use this in your
         //  Gatsby query
-        fieldName: "getVCard",
+        fieldName: "get_lollies",
         // Url to query from
-        url: "https://virtualpop.netlify.app/.netlify/functions/card",
+        url: `http://virtualpop.netlify.app/.netlify/functions/card`,
+        // https://virtualpop.netlify.app
       },
     },
   ],

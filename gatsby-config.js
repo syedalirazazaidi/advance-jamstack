@@ -12,7 +12,7 @@ console.log(process.env.NODE_ENV, "____________________________")
 module.exports = {
   /* Your site config here */
   plugins: [
-    "gatsby-plugin-typescript",
+    // "gatsby-plugin-typescript",
     {
       resolve: "gatsby-source-graphql",
       options: {
@@ -22,7 +22,8 @@ module.exports = {
         //  Gatsby query
         fieldName: "get_lollies",
         // Url to query from
-        url: `http://virtualpop.netlify.app/.netlify/functions/card`,
+        // url: "https://api.github.com/graphql",
+        url: "https://virtualpop.netlify.app/.netlify/functions/card",
         // https://virtualpop.netlify.app
       },
     },

@@ -51,8 +51,7 @@ export default function Home() {
         messageField: messageField.current.value,
       },
     }).then(result => {
-      console.log(result.data.addVCard.link, "999LOLO")
-      navigate(`/showlolli/${result.data.addVCard.link}`)
+      navigate(`${result.data.addVCard.link}`)
     })
 
     recField.current.value = ""

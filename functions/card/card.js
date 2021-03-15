@@ -8,7 +8,7 @@ const faunadb = require("faunadb"),
 const typeDefs = gql`
   type Query {
     getVCard: [VCard!]
-    getLolliLink(link: String): VCard
+    getLolliLink(link: String!): [VCard!]
   }
   type VCard {
     id: ID!
@@ -34,7 +34,7 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    getVCard: async (parent, args, context, { link }) => {
+    getVCard: async args => {
       try {
         // access faunadb
         const client = new faunadb.Client({
@@ -42,10 +42,11 @@ const resolvers = {
         })
         const result = await client.query(
           q.Map(
-            q.Paginate(q.Match(q.Index("link"))),
+            q.Paginate(q.Match(q.Index("lolly_link"))),
             q.Lambda(x => q.Get(x))
           )
         )
+        console.log(result.data, "put")
         return result.data.map(data => {
           return {
             id: data.ref.id,
@@ -63,10 +64,34 @@ const resolvers = {
       }
     },
     getLolliLink: async (_, { link }) => {
-      const result = await client.query(
-        query.Get(query.Match(query.Index("link"), link))
-      )
-      return result.data
+      console.log(link, "link")
+      try {
+        const client = new faunadb.Client({
+          secret: process.env.FAUNA_SERVER_SECRET,
+        })
+        // const result = await client.query(q.Get(q.Match(q.Index("tech"), link)))
+        const result = await client.query(
+          q.Map(
+            q.Paginate(q.Match(q.Index("lolly_link"), link)),
+            q.Lambda(x => q.Get(x))
+          )
+        )
+        console.log(result, "get")
+        return result.data.map(data => {
+          console.log(data, "data.link")
+          return {
+            c1: data.data.c1,
+            c2: data.data.c2,
+            c3: data.data.c3,
+            recField: data.data.recField,
+            senderField: data.data.senderField,
+            messageField: data.data.messageField,
+            link: data.data.link,
+          }
+        })
+      } catch (error) {
+        console.log(error)
+      }
     },
   },
 
@@ -94,6 +119,7 @@ const resolvers = {
           })
         )
 
+        console.log(result, "pop")
         return {
           id: result.ref.id,
           c1: result.data.c1,

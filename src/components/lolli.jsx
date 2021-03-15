@@ -1,6 +1,7 @@
 import React from 'react'
 
  const Lolli = ({top,middle,bottom}) => {
+   console.log(top,"TOP")
     
   return (
   <div>

@@ -3,13 +3,6 @@ import PropTypes from "prop-types"
 
 import { useQuery } from "@apollo/client"
 
-// query GetExchangeRates {
-//   rates(currency: "USD") {
-//     currency
-//     rate
-//   }
-// }
-
 import gql from "graphql-tag"
 const GET_LOLLIES = gql`
   query($link: String) {
@@ -46,7 +39,6 @@ const NewLolli = props => {
     return <h2>Error</h2>
   }
   if (data) console.log(data.link, "DATA")
-  // console.log(vollidata, "POPOPP")
   return <div>NewLolli</div>
 }
 

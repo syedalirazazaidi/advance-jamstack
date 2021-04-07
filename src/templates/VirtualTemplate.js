@@ -2,7 +2,7 @@ import React from "react"
 import Lolli from "../components/lolli"
 
 const VirtualTemplate = ({ linkContent, link }) => {
-  console.log(linkContent, "=====PLsdasd-0-0PLPL")
+  console.log(linkContent.c1, "=====PLsdasd-0-0PLPL")
 
   return (
     <div className="container">

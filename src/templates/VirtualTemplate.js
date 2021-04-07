@@ -2,7 +2,7 @@ import React from "react"
 import Lolli from "../components/lolli"
 
 const VirtualTemplate = ({ linkContent, link }) => {
-  console.log(linkContent.c1, "=====PLsdasd-0-0PLPL")
+  console.log("Page Context", JSON.stringify(linkContent))
 
   return (
     <div className="container">
@@ -12,11 +12,11 @@ const VirtualTemplate = ({ linkContent, link }) => {
       <p>because we all know someone who deserves some sugar.</p>
       <div className="containerLolly">
         <div style={{ margin: "55px" }}>
-          <Lolli
+          {/* <Lolli
             top={linkContent.c1}
             middle={linkContent.c2}
             bottom={linkContent.c3}
-          />
+          /> */}
         </div>
         <div className="Lolly">
           <p>Your lolly is freezing. Share it with this link</p>

@@ -11,7 +11,9 @@ const VirtualTemplate = ({ linkContent, link }) => {
       <h1 style={{ fontFamily: "sans-serif" }}>virtual lollipop</h1>
       <p>because we all know someone who deserves some sugar.</p>
       <div className="containerLolly">
-        <h1> {linkContent.c1}</h1>
+        <p className="recip">{linkContent.senderField}</p>
+        <p className="mess">{linkContent.messageField}</p>
+        <p className="from">{linkContent.recField}</p>
         {/* <div style={{ margin: "55px" }}>
           <Lolli
             top={linkContent.c1}

@@ -187,12 +187,11 @@ const resolvers = {
         const client = new faunadb.Client({
           secret: "fnAEBmGkQfACCUcs3WGozlUSDt6f5KoHXsdUcB7-",
         })
-        // const id = shortid.generate()
-        // args.link = id
+
         const result = await client.query(
           q.Create(
             q.Collection("tech"),
-            // data: args,
+
             {
               data: {
                 c1,

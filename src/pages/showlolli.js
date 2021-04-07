@@ -1,12 +1,15 @@
 import React from "react"
 import { useQuery, useMutation } from "@apollo/client"
 import gql from "graphql-tag"
+
+import { graphql } from "gatsby"
 import NewLolli from "../components/newLolli"
 
+import { Router } from "@reach/router"
+
 const GET_VOLLY_BY_ID = gql`
-  query getLolliLink($link: String!) {
-    getLolliLink(link: $link) {
-      id
+  query getLolliLink($path: String!) {
+    getLolliLink(path: $path) {
       c1
       c2
       c3
@@ -19,17 +22,32 @@ const GET_VOLLY_BY_ID = gql`
 `
 
 export default function Showlolli({ location }) {
-  console.log(location.pathname, "l09900909")
-  const link = location.pathname.replace("/showlolli/", "")
-  console.log(link, "LONM====")
+  console.log(location, "l09900909")
+  const path = location.pathname.replace("/showlolli/", "")
+  // const path = state ? state.id : ""
+  console.log(path, "LONM====")
   const { loading, error, data } = useQuery(GET_VOLLY_BY_ID, {
-    variables: { link },
+    variables: { path },
   })
-  if (loading) return <h2>LOADING...</h2>
-  if (data) console.log(data, "D((-----(((((((((ATA")
-  if (error) {
-    return <h2>Error</h2>
+
+  if (loading) {
+    return <h2>loading</h2>
   }
+  if (error) {
+    return <h2>{error}</h2>
+  }
+  if (data) {
+    console.log(data, "get data from graphql")
+  }
+
+  return (
+    <div>
+      {data.getLolliLink[0].recField}
+      {data.getLolliLink[0].senderField}
+      {data.getLolliLink[0].messageField}
+      {/* <Router basepath="/showlolli">hi dear</Router> */}
+    </div>
+  )
 
   // return data.getVCard.map((data, key) => {
   //   console.log(data, "HIHI")

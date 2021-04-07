@@ -40,8 +40,8 @@ export default function Home() {
   const senderField = useRef()
   const recField = useRef()
   const messageField = useRef()
-  const handleSubmit = () => {
-    addVCard({
+  const handleSubmit = async () => {
+    await addVCard({
       variables: {
         c1,
         c2,
@@ -51,7 +51,9 @@ export default function Home() {
         messageField: messageField.current.value,
       },
     }).then(result => {
-      navigate(`${result.data.addVCard.link}`)
+      navigate(`/showlolli/${result.data?.addVCard?.link}`)
+
+      console.log(result, "YOYO")
     })
 
     recField.current.value = ""

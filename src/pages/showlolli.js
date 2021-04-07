@@ -1,11 +1,8 @@
 import React from "react"
-import { useQuery, useMutation } from "@apollo/client"
+import { useQuery } from "@apollo/client"
 import gql from "graphql-tag"
 
-import { graphql } from "gatsby"
-import NewLolli from "../components/newLolli"
-
-import { Router } from "@reach/router"
+import VirtualTemplate from "../templates/VirtualTemplate"
 
 const GET_VOLLY_BY_ID = gql`
   query getLolliLink($path: String!) {
@@ -22,10 +19,8 @@ const GET_VOLLY_BY_ID = gql`
 `
 
 export default function Showlolli({ location }) {
-  console.log(location, "l09900909")
   const path = location.pathname.replace("/showlolli/", "")
-  // const path = state ? state.id : ""
-  console.log(path, "LONM====")
+
   const { loading, error, data } = useQuery(GET_VOLLY_BY_ID, {
     variables: { path },
   })
@@ -42,39 +37,14 @@ export default function Showlolli({ location }) {
 
   return (
     <div>
-      {data.getLolliLink[0].recField}
-      {data.getLolliLink[0].senderField}
-      {data.getLolliLink[0].messageField}
-      {/* <Router basepath="/showlolli">hi dear</Router> */}
+      {!loading &&
+        data.getLolliLink.map((value, key) => (
+          <VirtualTemplate
+            key={key}
+            linkContent={value}
+            link={`/${value.link}`}
+          />
+        ))}
     </div>
   )
-
-  // return data.getVCard.map((data, key) => {
-  //   console.log(data, "HIHI")
-  //   const top = data.c1
-  //   const middle = data.c2
-  //   const bottom = data.c3
-  //   return (
-  //     <div key={key}>
-  //       <NewLolli vollidata={data} path={`/${data.link}`} />
-  //       <h1 style={{ fontFamily: "sans-serif" }}>virtual lollipop</h1>
-  //       <p>because we all know someone who deserves some sugar.</p>
-  //       <div className="containerLolly">
-  //         <div style={{ margin: "55px" }}>
-  //           <Lolli top={top} middle={middle} bottom={bottom} />
-  //         </div>
-  //         <div className="Lolly">
-  //           <p>Your lolly is freezing. Share it with this link</p>
-  //           <h2 className="preLink">
-  //             https://virtuallolly.netlify.app/LNKZRm8j-
-  //           </h2>
-  //           <p className="recip">{data.senderField}</p>
-  //           <p className="mess">{data.messageField}</p>
-  //           <p className="from">{data.recField}</p>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   )
-  // }
-  //)
 }

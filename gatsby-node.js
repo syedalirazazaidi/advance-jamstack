@@ -17,10 +17,8 @@ exports.createPages = async function ({ graphql, actions }) {
   `)
 
   const posts = query.data.getVCard.getVCard
-  console.log(posts, "-------")
 
   posts.map(async card => {
-    console.log(card.link, "=======")
     await actions.createPage({
       path: `/${card.link}`,
       component: require.resolve(`./src/templates/VirtualTemplate`),
@@ -31,24 +29,9 @@ exports.createPages = async function ({ graphql, actions }) {
 exports.onCreatePage = async ({ page, actions }) => {
   const { createPage } = actions
 
-  // page.matchPath is a special key that’s used for matching pages
-
-  // only on the client.
-
   if (page.path.match(/^\/showlolli/)) {
     page.matchPath = "/showlolli/*"
-
-    // Update the page.
 
     createPage(page)
   }
 }
-
-// exports.onCreatePage = async ({ page, actions }) => {
-//   const { createPage } = actions
-
-//   if (page.path.match(/^\/showlolli/)) {
-//     page.matchPath = "/showlolli/*"
-//     createPage(page)
-//   }
-// }

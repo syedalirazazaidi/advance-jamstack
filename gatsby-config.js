@@ -3,12 +3,7 @@
  *
  * See: https://www.gatsbyjs.com/docs/gatsby-config/
  */
-var baseUrl =
-  process.env.NODE_ENV === "development"
-    ? "http://localhost:8888"
-    : "https://virtualpop.netlify.app"
 
-console.log(process.env.NODE_ENV, "____________________________")
 module.exports = {
   /* Your site config here */
   plugins: [

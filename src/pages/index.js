@@ -4,7 +4,7 @@ import "./style.css"
 
 import { navigate } from "gatsby"
 
-import { useQuery, useMutation } from "@apollo/client"
+import { useMutation } from "@apollo/client"
 import gql from "graphql-tag"
 
 const AddVCARDMutation = gql`
@@ -35,7 +35,6 @@ export default function Home() {
   const [c3, setC3] = useState("#d52358")
 
   const [addVCard] = useMutation(AddVCARDMutation)
-  // const [getVCard] = useMutation(GET_BY_ID)
 
   const senderField = useRef()
   const recField = useRef()
@@ -60,26 +59,6 @@ export default function Home() {
     senderField.current.value = ""
     messageField.current.value = ""
   }
-  // const { loading, error, data } = useQuery(GET_BY_ID)
-  // if (loading)
-  //   return (
-  //     <h2
-  //       style={{
-  //         marginTop: "60px",
-  //         justifyContent: "center",
-  //         alignItems: "center",
-  //         display: "flex",
-  //       }}
-  //     >
-  //       Loading...
-  //     </h2>
-  //   )
-
-  // if (data) console.log(data.link, "DAIIIIIIIIIIIIIIIITA")
-  // if (error) {
-  //   console.log(error, "ELOLO")
-  //   return <h2>Error</h2>
-  // }
 
   return (
     <>

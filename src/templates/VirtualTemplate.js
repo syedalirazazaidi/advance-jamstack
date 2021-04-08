@@ -29,7 +29,7 @@ const VirtualTemplate = ({ linkContent, link }) => {
         <div className="Lolly">
           <p>Your lolly is freezing. Share it with this link</p>
           <h2 className="preLink">
-            {`https://virtuallolly.netlify.app${link}`}
+            {`https://virtualpop.netlify.app/showlolli${link}`}
           </h2>
           <p className="recip">{linkContent.senderField}</p>
           <p className="mess">{linkContent.messageField}</p>

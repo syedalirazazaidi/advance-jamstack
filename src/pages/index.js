@@ -40,24 +40,30 @@ export default function Home() {
   const recField = useRef()
   const messageField = useRef()
   const handleSubmit = async () => {
-    await addVCard({
-      variables: {
-        c1,
-        c2,
-        c3,
-        recField: recField.current.value,
-        senderField: senderField.current.value,
-        messageField: messageField.current.value,
-      },
-    }).then(result => {
-      navigate(`/showlolli/${result.data?.addVCard?.link}`)
+    if (
+      !recField.current.value == "" &&
+      !senderField.current.value == "" &&
+      !messageField.current.value == ""
+    ) {
+      await addVCard({
+        variables: {
+          c1,
+          c2,
+          c3,
+          recField: recField.current.value,
+          senderField: senderField.current.value,
+          messageField: messageField.current.value,
+        },
+      }).then(result => {
+        navigate(`/showlolli/${result.data?.addVCard?.link}`)
 
-      console.log(result, "YOYO")
-    })
+        console.log(result, "YOYO")
+      })
 
-    recField.current.value = ""
-    senderField.current.value = ""
-    messageField.current.value = ""
+      recField.current.value = ""
+      senderField.current.value = ""
+      messageField.current.value = ""
+    }
   }
 
   return (

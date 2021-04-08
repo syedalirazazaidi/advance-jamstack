@@ -81,10 +81,19 @@ padding:5px 10px
    .Lolly{
        width: 280px;
    } 
+   .pl{
+       margin: 2px;
+       color: yellow;
+       white-space: nowrap; 
+       width: 300px; 
+       overflow: hidden;
+       text-overflow: ellipsis; 
+       border: 1px solid #000000;
+   }
    .preLink{
-    padding: 7px;
+    /* padding: 7px;
     font-size: 15px;
     width: 280px;
-    margin-right: 60px;
+    margin-right: 60px; */
    }
 }

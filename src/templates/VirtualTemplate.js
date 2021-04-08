@@ -4,6 +4,7 @@ import "../pages/style.css"
 const VirtualTemplate = ({ linkContent, link }) => {
   // console.log("Page Context", JSON.stringify(linkContent))
   console.log(linkContent, "get content")
+  console.log(link, "ppkpkpklink")
   return (
     <div className="container">
       <title style={{ color: "green" }}>Get lolli</title>

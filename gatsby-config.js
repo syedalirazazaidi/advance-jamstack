@@ -6,6 +6,7 @@
 
 module.exports = {
   /* Your site config here */
+  flags: { PRESERVE_WEBPACK_CACHE: true },
   plugins: [
     // "gatsby-plugin-typescript",
     {

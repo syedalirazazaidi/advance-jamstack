@@ -1,6 +1,6 @@
 import React from "react"
 import Lolli from "../components/lolli"
-
+import "../pages/style.css"
 const VirtualTemplate = ({ linkContent, link }) => {
   // console.log("Page Context", JSON.stringify(linkContent))
   console.log(linkContent, "get content")
@@ -11,15 +11,15 @@ const VirtualTemplate = ({ linkContent, link }) => {
       <h1 style={{ fontFamily: "sans-serif" }}>virtual lollipop</h1>
       <p>because we all know someone who deserves some sugar.</p>
       <div className="containerLolly">
-        <Lolli
+        {/* <Lolli
           top={linkContent.c1}
           middle={linkContent.c2}
           bottom={linkContent.c3}
         />
         <p className="recip">{linkContent.senderField}</p>
         <p className="mess">{linkContent.messageField}</p>
-        <p className="from">{linkContent.recField}</p>
-        {/* <div style={{ margin: "55px" }}>
+        <p className="from">{linkContent.recField}</p> */}
+        <div style={{ margin: "55px" }}>
           <Lolli
             top={linkContent.c1}
             middle={linkContent.c2}
@@ -34,7 +34,7 @@ const VirtualTemplate = ({ linkContent, link }) => {
           <p className="recip">{linkContent.senderField}</p>
           <p className="mess">{linkContent.messageField}</p>
           <p className="from">{linkContent.recField}</p>
-        </div> */}
+        </div>
       </div>
     </div>
   )
